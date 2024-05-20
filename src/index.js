@@ -1,31 +1,29 @@
 require('dotenv').config()
 const express = require('express')
-const { MongoClient, ObjectId } = require('mongodb')
+const { connectToDatabase } = require('./db/database-connection')
+//const { MongoClient, ObjectId } = require('mongodb')
 
-// Preparamos as informacoes ao banco de dados
-const dburl = process.env.DATABASE_URL
-const dbname = 'mongodb-arquitetura-mvc'
+
 
 // Declaramos a funcao main()
 async function main() {
-    // Realizamos a conexao com o banco de dados
-    const client = new MongoClient(dburl)
-    console.log('conectando ao banco de dados...')
-    await client.connect()
-    console.log('Banco de dados conectado com sucesso!.')
+// FIX: Utilizar o connectToDatabase() e receber o DB
+    await connectToDatabase()
 
-    const db = client.db(dbname)
-    const collection = db.collection('personagem')
+    //const collection = db.collection('personagem')
 
     const app = express()
+
+    //Middlewares
+    //Sinaliza para o Express que estamos usando JSON no Body
+    app.use(express.json())
 
     app.get('/', function (req, res) {
         res.send('Hello World!')
     })
 
-    const lista = ['Java', 'Kotlin', 'Android']
-    // idicies       0        1         2
-
+    //FIX: mover isso para a pasta 'personagem'
+    /*
     //Endpoint Read all [GET] /personagem
     app.get('/personagem', async function (req, res) {
         // Acessamos a lista de itens na collection do MongoDB
@@ -52,8 +50,6 @@ async function main() {
         res.send(item)
     })
 
-    //Sinaliza para o Express que estamos usando JSON no Body
-    app.use(express.json())
 
     // Endpoint Create [POST] /personagem
     app.post('/personagem', async function (req, res) {
@@ -131,9 +127,9 @@ async function main() {
         // Enviamos uma mensagem de sucesso
         res.send('Item deletado com sucesso: ' + id)
     })
-
+    */
     app.listen(3000, function () {
-        console.log('Aplicação rodando em http://localhost:5000')
+        console.log('Aplicação rodando em http://localhost:3000')
     })
 }
 
