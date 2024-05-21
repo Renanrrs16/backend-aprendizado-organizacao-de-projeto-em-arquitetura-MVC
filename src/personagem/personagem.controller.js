@@ -50,18 +50,25 @@ async function updateById(req, res) {
 
   // Checar se o nome esta presente no body
   if (!newItem || !newItem.nome) {
-      return res.status(400).send('Corpo da requisicao deve conter as propriedade `nome`.')
+    return res.status(400).send('Corpo da requisicao deve conter as propriedade `nome`.')
   }
 
-   // Atualizamos no DB o newItem pelo id, usando o service
-   await service.updateById(id, newItem)
+  // Atualizamos no DB o newItem pelo id, usando o service
+  await service.updateById(id, newItem)
 
   // Envia uma mesagem de sucesso
   res.send(newItem)
 }
 
-function deleteByID(req, res) {
-  res.send('Delete by ID')
+async function deleteByID(req, res) {
+  // Acessamos o parametro de rota
+  const id = req.params.id
+
+  // Remover o item do DB usando ID, via service
+  await service.deleteByID(id)
+
+  // Enviamos uma mensagem de sucesso
+  res.send('Item deletado com sucesso: ' + id)
 }
 
 module.exports = {

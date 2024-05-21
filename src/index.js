@@ -25,27 +25,6 @@ async function main() {
 
     app.use('/personagem', personagemRouter)
 
-    //FIX: mover isso para a pasta 'personagem'
-    /*
-    // Endpoint Delete [DELETE] /personagem/:id
-    app.delete('/personagem/:id', async function (req, res) {
-
-        // Acessamos o parametro de rota
-        const id = req.params.id
-
-        // Checamos se o item do ID - 1 esta a lista, exibindo
-        // uma mensagem caso nao esteja
-        // if (!lista[id - 1]) {
-        //     return res.status(404).send('Item não encontrado.')
-        // }
-
-        // Remover o item da Collection usando ID
-        await collection.deleteOne({_id: new ObjectId(id) })
-
-        // Enviamos uma mensagem de sucesso
-        res.send('Item deletado com sucesso: ' + id)
-    })
-    */
     app.listen(3000, function () {
         console.log('Aplicação rodando em http://localhost:3000')
     })
