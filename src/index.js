@@ -27,29 +27,7 @@ async function main() {
 
     //FIX: mover isso para a pasta 'personagem'
     /*
-    // Endpoint Create [POST] /personagem
-    app.post('/personagem', async function (req, res) {
-        // Acessamos o body da Requisição
-        const novoitem = req.body
 
-  
-
-        // Checar se o nome esta presente no body
-        if (!novoitem || !novoitem.nome) {
-            return res.status(400).send('Corpo da requisicao deve conter as propriedade `nome`.')
-        }
-
-        // Checa se o novoitem esta na lista ou nao
-        // if (lista.includes(novoitem)) {
-        //     return res.status(409).send('Item ja existe na lista')
-        // }
-
-        // Adicionamos na Colletion
-        await collection.insertOne(novoitem)
-
-        // Exibimos a mensagem com sucesso
-        res.status(201).send(novoitem)
-    })
 
     // Endpoint Update [PUT] /personagem/:id
     app.put('/personagem/:id', async function (req, res) {
