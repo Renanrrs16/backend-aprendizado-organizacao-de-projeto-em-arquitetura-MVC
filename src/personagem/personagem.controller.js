@@ -8,8 +8,20 @@ async function readAll(req, res) {
   res.send(items)
 }
 
-function readById(req, res) {
-  res.send('read by ID')
+async function readById(req, res) {
+  // Acessamos o parametro de Rota ID
+  const id = req.params.id
+
+  //Acessamos o personagem no service atraves do ID
+  const item = await service.readById(id)
+
+  // Checamos se o item obtido e existente
+  if (!item) {
+    return res.status(404).send('Item não encontrado.')
+  }
+
+  // Enviamos o item como resposta
+  res.send(item)
 }
 
 function create(req, res) {
